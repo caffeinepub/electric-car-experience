@@ -1,0 +1,74 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-19T13:55:01.397Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 5,
+    "implemented": 1,
+    "items": [
+      {
+        "id": "REQ-25",
+        "summary": "Fix the Cars page to properly display the Tesla car inventory with model images, specifications, pricing, and functional buy buttons that navigate to the payment page",
+        "status": "missing",
+        "plannedFiles": [
+          "frontend/src/pages/CarsPage.tsx"
+        ],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-26",
+        "summary": "Fix the signup page to properly register new users with Internet Identity authentication and create user profiles in the backend",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/pages/SignupPage.tsx",
+          "frontend/src/components/ProfileSetupModal.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/ProfileSetupModal.tsx"
+        ]
+      },
+      {
+        "id": "REQ-27",
+        "summary": "Fix the login page to properly authenticate existing users with Internet Identity and load their profiles from the backend",
+        "status": "missing",
+        "plannedFiles": [
+          "frontend/src/pages/LoginPage.tsx"
+        ],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-28",
+        "summary": "Ensure the backend actor properly handles getUserProfile, saveUserProfile, and getInventory queries with appropriate error handling",
+        "status": "unknown",
+        "plannedFiles": [],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-29",
+        "summary": "Fix the header navigation to properly display Login/Signup links for unauthenticated users and User Profile link for authenticated users",
+        "status": "missing",
+        "plannedFiles": [
+          "frontend/src/components/Header.tsx"
+        ],
+        "matchedFiles": []
+      }
+    ]
+  },
+  "changedFiles": [
+    "backend/main.mo",
+    "build-request.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/src/App.tsx",
+    "frontend/src/components/ProfileSetupModal.tsx",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

@@ -1,0 +1,80 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Rebuild Tesla marketplace with car listings and authentication",
+  "requirements": [
+    {
+      "id": "REQ-25",
+      "summary": "Fix the Cars page to properly display the Tesla car inventory with model images, specifications, pricing, and functional buy buttons that navigate to the payment page",
+      "acceptanceCriteria": [
+        "The /cars route displays a grid of Tesla vehicles",
+        "Each car card shows the model name, image, specifications, and price",
+        "Buy buttons are functional and navigate to the correct payment page with VIN",
+        "Scroll-triggered animations work as designed"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/CarsPage.tsx",
+          "operation": "modify",
+          "description": "Fix the car inventory display to properly render Tesla vehicle cards with model images from frontend/public/assets/generated/ (model-3.dim_800x600.png, model-s.dim_800x600.png, model-x.dim_800x600.png, model-y.dim_800x600.png), specifications (year, battery capacity), pricing, and buy buttons. Ensure buy buttons navigate to /payment with the correct VIN parameter. Verify scroll-triggered fade-up animations using IntersectionObserver work correctly. Use the getInventory query from useQueries.ts to fetch car data from the backend."
+        }
+      ]
+    },
+    {
+      "id": "REQ-26",
+      "summary": "Fix the signup page to properly register new users with Internet Identity authentication and create user profiles in the backend",
+      "acceptanceCriteria": [
+        "Users can click signup and authenticate with Internet Identity",
+        "New users are prompted with the profile setup modal",
+        "User profiles are successfully saved to the backend with principal ID and timestamp",
+        "After signup, users are redirected to the cars page"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/SignupPage.tsx",
+          "operation": "modify",
+          "description": "Fix the signup flow to properly authenticate users with Internet Identity using the useInternetIdentity hook. After successful authentication, check if the user has an existing profile using getCallerUserProfile from useQueries.ts. If no profile exists, show the ProfileSetupModal component to collect the user's name. After profile creation, redirect to /cars. Handle authentication errors gracefully with user-friendly error messages. Use the authorization component's authentication patterns as specified in the component usage instructions."
+        },
+        {
+          "path": "frontend/src/components/ProfileSetupModal.tsx",
+          "operation": "modify",
+          "description": "Ensure the modal properly collects user name input and calls saveCallerUserProfile mutation from useQueries.ts with the complete UserProfile structure including principal ID (from identity.getPrincipal()), empty preferences array, and timestamp. Add proper error handling for profile creation failures. Ensure modal closes and triggers redirect to /cars after successful profile save."
+        }
+      ]
+    },
+    {
+      "id": "REQ-27",
+      "summary": "Fix the login page to properly authenticate existing users with Internet Identity and load their profiles from the backend",
+      "acceptanceCriteria": [
+        "Users can authenticate with Internet Identity on the login page",
+        "Existing user profiles are loaded from the backend",
+        "New users see the profile setup modal",
+        "After login, users are redirected to the cars page"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/LoginPage.tsx",
+          "operation": "modify",
+          "description": "Fix the login flow to properly authenticate users with Internet Identity using the useInternetIdentity hook. After successful authentication, fetch the user profile using getCallerUserProfile from useQueries.ts. For existing users with profiles, redirect directly to /cars. For new users without profiles, display the ProfileSetupModal component. Handle the profile loading state correctly to prevent modal flashing (check isFetched and userProfile === null before showing modal). Add proper error handling for authentication failures. Use the authorization component's authentication patterns and profile setup prevention guidelines."
+        }
+      ]
+    },
+    {
+      "id": "REQ-29",
+      "summary": "Fix the header navigation to properly display Login/Signup links for unauthenticated users and User Profile link for authenticated users",
+      "acceptanceCriteria": [
+        "Unauthenticated users see Login and Signup links in the header",
+        "Authenticated users see User Profile link instead of Login/Signup",
+        "Admin users see the Admin link in addition to User Profile",
+        "All navigation links are functional and route correctly"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/Header.tsx",
+          "operation": "modify",
+          "description": "Fix the header navigation to conditionally render links based on authentication state. For unauthenticated users (when identity is null from useInternetIdentity hook), display Login and Signup links that navigate to /login and /signup routes. For authenticated users, replace Login/Signup with a User Profile link navigating to /profile. For admin users (check using isCallerAdmin query from useQueries.ts), additionally display the Admin link navigating to /admin. Ensure all navigation links use proper routing (Link components from @tanstack/react-router). Maintain existing scroll-based backdrop blur effects and responsive design."
+        }
+      ]
+    }
+  ]
+}

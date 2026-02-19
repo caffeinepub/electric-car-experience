@@ -1,0 +1,119 @@
+{
+  "kind": "build_request",
+  "title": "Rebuild Tesla marketplace with car listings and authentication",
+  "projectName": "Tesla Marketplace",
+  "priority": "normal",
+  "requirements": [
+    {
+      "id": "REQ-25",
+      "text": "Fix the Cars page to properly display the Tesla car inventory with model images, specifications, pricing, and functional buy buttons that navigate to the payment page",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-rebuild-request"
+        ],
+        "quotes": [
+          "Rebuild the Tesla marketplace (focusing on car listings and authentication first)"
+        ]
+      },
+      "acceptanceCriteria": [
+        "The /cars route displays a grid of Tesla vehicles",
+        "Each car card shows the model name, image, specifications, and price",
+        "Buy buttons are functional and navigate to the payment page with the correct VIN",
+        "Scroll-triggered animations work as designed"
+      ]
+    },
+    {
+      "id": "REQ-26",
+      "text": "Fix the signup page to properly register new users with Internet Identity authentication and create user profiles in the backend",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-rebuild-request"
+        ],
+        "quotes": [
+          "Rebuild the Tesla marketplace (focusing on car listings and authentication first)"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Users can click signup and authenticate with Internet Identity",
+        "New users are prompted with the profile setup modal",
+        "User profiles are successfully saved to the backend with principal ID and timestamp",
+        "After signup, users are redirected to the cars page"
+      ]
+    },
+    {
+      "id": "REQ-27",
+      "text": "Fix the login page to properly authenticate existing users with Internet Identity and load their profiles from the backend",
+      "target": "both",
+      "source": {
+        "messageIds": [
+          "msg-rebuild-request"
+        ],
+        "quotes": [
+          "Rebuild the Tesla marketplace (focusing on car listings and authentication first)"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Users can authenticate with Internet Identity on the login page",
+        "Existing user profiles are loaded from the backend",
+        "New users see the profile setup modal",
+        "After login, users are redirected to the cars page"
+      ]
+    },
+    {
+      "id": "REQ-28",
+      "text": "Ensure the backend actor properly handles getUserProfile, saveUserProfile, and getInventory queries with appropriate error handling",
+      "target": "backend",
+      "source": {
+        "messageIds": [
+          "msg-rebuild-request"
+        ],
+        "quotes": [
+          "Rebuild the Tesla marketplace (focusing on car listings and authentication first)"
+        ]
+      },
+      "acceptanceCriteria": [
+        "getUserProfile returns existing profiles or null for new users",
+        "saveUserProfile creates new profiles with principal ID and timestamp",
+        "getInventory returns the full list of Tesla vehicles with specifications and pricing",
+        "All backend queries handle authentication correctly"
+      ]
+    },
+    {
+      "id": "REQ-29",
+      "text": "Fix the header navigation to properly display Login/Signup links for unauthenticated users and User Profile link for authenticated users",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-rebuild-request"
+        ],
+        "quotes": [
+          "Rebuild the Tesla marketplace (focusing on car listings and authentication first)"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Unauthenticated users see Login and Signup links in the header",
+        "Authenticated users see User Profile link instead of Login/Signup",
+        "Admin users see the Admin link in addition to User Profile",
+        "All navigation links are functional and route correctly"
+      ]
+    }
+  ],
+  "constraints": [
+    "Use Internet Identity for all authentication",
+    "Maintain single-actor architecture in backend/main.mo",
+    "Do not modify immutable frontend paths: useInternetIdentity.ts, useActor.ts, main.tsx, components/ui",
+    "Keep all existing Tesla branding and visual theme"
+  ],
+  "nonGoals": [
+    "Implementing the payment flow functionality",
+    "Building the admin dashboard features",
+    "Creating order management system",
+    "Adding customer inquiry handling"
+  ],
+  "imageRequirements": {
+    "required": [],
+    "edits": []
+  }
+}

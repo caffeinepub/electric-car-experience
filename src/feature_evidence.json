@@ -1,0 +1,24 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-fix-the-signup-page-to-properly-register-new-users-with-internet-identity-authentication-and-create-user-profiles-in-the-backend",
+      "featureTitle": "Fix the signup page to properly register new users with Internet Identity authentication and create user profiles in the backend",
+      "files": [
+        "frontend/src/components/ProfileSetupModal.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0",
+        "authorization@4.0.0"
+      ],
+      "testIds": [
+        "REQ-26"
+      ],
+      "confidence": "high"
+    }
+  ]
+}
